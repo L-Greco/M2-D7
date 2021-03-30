@@ -35,7 +35,7 @@
             /* EX7) Write a selector to target all the li into the first ordered-list in the sidebar ( Archives ) */
              main > div > aside > div:nth-child(2) > ol li {background-color: darkorange;}
             /* EX8) Write a selector to target the second post author */
-             main > div > div > div:nth-child(3) > p.blog-post-meta > a {background-color: darkred;}
+             main > div > div > div:nth-child(3) > p.-meta > a {background-color: darkred;}
             /* EX9) Write a selector to target the "back to top" link     #### EXTRA Try doing it without targeting the footer element directly */
            footer>p+p>a {background-color: darkviolet;}
             /* EX10) Write a selector to target the footer */
@@ -47,7 +47,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="" />
+    <meta name="description" content="blog-post" />
     <meta
       name="author"
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
@@ -235,8 +235,8 @@
           <h3 class="pb-4 mb-4 font-italic border-bottom">From the Firehose</h3>
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">
+            <h2 class="-title">Sample blog post</h2>
+            <p class="-meta">
               January 1, 2014 by <a href="#">Mark</a>
             </p>
 
@@ -318,11 +318,11 @@
               consectetur est at lobortis.
             </p>
           </div>
-          <!-- /.blog-post -->
+          <!-- /. -->
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Another blog post</h2>
-            <p class="blog-post-meta">
+            <h2 class="-title">Another blog post</h2>
+            <p class="-meta">
               December 23, 2013 by <a href="#">Jacob</a>
             </p>
 
@@ -352,11 +352,11 @@
               consectetur ac, vestibulum at eros.
             </p>
           </div>
-          <!-- /.blog-post -->
+          <!-- /. -->
 
           <div class="blog-post">
-            <h2 class="blog-post-title">New feature</h2>
-            <p class="blog-post-meta">
+            <h2 class="-title">New feature</h2>
+            <p class="-meta">
               December 14, 2013 by <a href="#">Chris</a>
             </p>
 
@@ -385,15 +385,16 @@
               elit libero, a pharetra augue.
             </p>
           </div>
-          <!-- /.blog-post -->
+          <!-- /. -->
 
           <nav class="blog-pagination">
             <a class="btn btn-outline-primary" href="#">Older</a>
             <a
               class="btn btn-outline-secondary disabled"
-              href="#"
               tabindex="-1"
               aria-disabled="true"
+              href="#"
+              
               >Newer</a
             >
           </nav>
@@ -485,11 +486,45 @@
           
         }
         // EX15) Write a function to change the column size for post headings
+        
         // EX16) Write a function to remove the "Search" magnifying glass icon
+        const removeMagnifyier = function () {
+           document.getElementsByTagName("svg")[0].remove()   // beautiful one line of code :)
+        }
         // EX17) Write a function to trim just the first 50 characters in the first paragraph for each blog post
+        const trim50Char = function () {
+          let firstParagraphs = document.querySelectorAll("p.-meta+p")  // paragraphs had the meta class :) 
+          for (i=0;i<firstParagraphs.length;i++) 
+            {
+             firstParagraphs[i].innerText = firstParagraphs[i].innerText.slice(50)          
+            }
+        }
+
         // EX18) Write a function and attach it to the "Newer" button, to add new Blog Post (just div and title)
+        window.onload = function () {
+          document.querySelector("body > main > div > div > nav > a.btn.btn-outline-secondary.disabled").setAttribute("onclick","addNewBlogPost()")  // here i add the onclick event on the button (ex 18)
+          document.querySelector("body > main > div > div > nav > a:nth-child(1)").setAttribute("onclick","removeBlogPost()") // same but for the ex 19 
+         document.querySelector("body > main > div > div > nav > a.btn.btn-outline-secondary.disabled").removeAttribute("href") 
+         document.querySelector("body > main > div > div > nav > a:nth-child(1)").removeAttribute("href")  // here i remove the href att so it doest move the screen to the begining
+          document.querySelector("body > main > div > div > nav > a.btn.btn-outline-secondary.disabled").className="btn btn-outline-primary"  // here i change the class to make it like the other button
+        }
+        const  addNewBlogPost = function () {
+          let newDiv=  document.createElement("div",{class:"blog-post"}) 
+          newDiv.setAttribute("class","blog-post")
+          let newH2= document.createElement("h2") // this syndax creates an h2 with a class="-title"
+          newH2.setAttribute("class","-title")  
+          newH2.innerText=`New Blogspot!!! `
+          newDiv.appendChild(newH2)
+          document.querySelector("body > main > div > div").appendChild(newDiv)  
+        }
         // // EX19) Write a function and attach it to the "Older" button, to remove the last Blog Post
+        const removeBlogPost = function () {
+         let blogs = document.querySelectorAll("body > main > div > div > div")
+         let lastBlog = document.querySelectorAll(" main > div > div > div.blog-post").length
+         document.querySelector(` main > div > div > div.blog-post:nth-child(${lastBlog}n)`).remove()   
+        }
         // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
+       // window.onload = function () {} .col-md-8 blog-main>div
     
     </script>
   </body>
