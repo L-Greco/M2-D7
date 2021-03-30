@@ -455,19 +455,42 @@
     </footer>
 
     <script>
-      /*
-        JS Exercises
-        EX11) Write a function to add a new link into the navbar
-        EX12) Write a function to change the color of the main title
-        EX13) Write a function to change the background of the jumbotron
-        EX14) Write a function to remove all the links under "Elsewhere"
-        EX15) Write a function to change the column size for post headings
-        EX16) Write a function to remove the "Search" magnifying glass icon
-        EX17) Write a function to trim just the first 50 characters in the first paragraph for each blog post
-        EX18) Write a function and attach it to the "Newer" button, to add new Blog Post (just div and title)
-        EX19) Write a function and attach it to the "Older" button, to remove the last Blog Post
-        EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
-    */
+      
+        // JS Exercises
+        // EX11) Write a function to add a new link into the navbar
+      const addNewLink = function (str) {
+         let navLinks= document.querySelectorAll("body> div > div.nav-scroller.py-1.mb-2 > nav") 
+         let newLink = document.createElement("a")
+         newLink.innerText=`${str}`
+         navLinks[0].appendChild(newLink)
+         
+
+      }
+        // EX12) Write a function to change the color of the main title
+        const changeH1Color = function (){
+          let h1 = document.getElementsByTagName("h1")[0]
+          h1.setAttribute("style","color:black")
+        }
+        // EX13) Write a function to change the background of the jumbotron
+        const changeJumboBackground = function (){
+          let jumbo = document.getElementsByClassName("jumbotron")[0]
+          jumbo.setAttribute("style","background-color:blue !important")
+         
+        }
+        // EX14) Write a function to remove all the links under "Elsewhere"
+        const removeLinks = function () {
+          let big = document.querySelectorAll("body > main > div > aside > div:nth-child(3)")[0]
+          let links = document.querySelectorAll("body > main > div > aside > div:nth-child(3) > ol")[0]
+          big.removeChild(links)
+          
+        }
+        // EX15) Write a function to change the column size for post headings
+        // EX16) Write a function to remove the "Search" magnifying glass icon
+        // EX17) Write a function to trim just the first 50 characters in the first paragraph for each blog post
+        // EX18) Write a function and attach it to the "Newer" button, to add new Blog Post (just div and title)
+        // // EX19) Write a function and attach it to the "Older" button, to remove the last Blog Post
+        // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
+    
     </script>
   </body>
 </html>
